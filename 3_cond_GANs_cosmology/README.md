@@ -5,14 +5,6 @@ Here, we develop conditional GANs to produce images of size 128^3, conditioned o
 
 We develop a simple GAN trained on 3D images of size 64^3.
 ### Metric comparison
-3D GAN: Pixel intensity | 3D GAN: Power spectrum |
-:-------------:|:---------------:
-![Pixel intensity](https://github.com/vmos1/cosmogan_pytorch/blob/master/images/3d_hist_best.png)| ![Power spectrum](https://github.com/vmos1/cosmogan_pytorch/blob/master/images/3d_spec_best.png)
-
-
-## 2D conditional GAN results
-We develop a conditional GAN trained on 2D images of size $128^2$ for 3 different values of the cosmological paramter sigma.
-### Metric comparison
 2D cGAN: Pixel intensity | 2D cGAN: Power spectrum  |
 :-------------:|:---------------:
 ![Pixel intensity](https://github.com/vmos1/cosmogan_pytorch/blob/master/images/2d_cgan_hist_best.png) |![Power spectrum](https://github.com/vmos1/cosmogan_pytorch/blob/master/images/2d_cgan_spec_best.png)
