@@ -29,5 +29,5 @@ There are jupyter notebooks to build launch scripts to run the code on cori GPUs
 | Name | Description |
 | --- | ---|
 | [1_basic_GAN/cosmogan_train.ipynb](https://github.com/vmos1/cosmogan_pytorch/blob/master/code/4_basic_3d_GAN/1_main_code/train_3dgan.ipynb) | Jupyter notebook to test conditional GAN |
-| [1_basic_GAN/1_main_code](https://github.com/vmos1/cosmogan_pytorch/tree/master/code/4_basic_3d_GAN/1_main_code) | Folder containing main training code |
-|[1_basic_GAN/2_analysis/1_pytorch_analyze-results.ipynb](https://github.com/vmos1/cosmogan_pytorch/blob/master/code/4_basic_3d_GAN/2_analysis/1_pytorch_3d_analyze-results.ipynb) | Notebook to analyze GAN results and view best epoch-steps |
+| [1_basic_GAN/1_main_code](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/cGAN_3d_pytorch/code/main.py) | main training code |
+|[analysis/1_cgan3d_analyze_pytorch_without_precompute.ipynb](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/cGAN_3d_pytorch/analysis/1_cgan3d_analyze_pytorch_without_precompute.ipynb) | Notebook to analyze GAN results and view best epoch-steps |
