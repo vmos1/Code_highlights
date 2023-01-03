@@ -1,7 +1,7 @@
 
 
 
-## How to run this code: 
+## Running this code: 
 
 ## Compilation
 `g++ -lm -std=c++11 mgrid_ntl.cpp -o a1 `
