@@ -17,6 +17,8 @@ To get a better idea of the quality of generated images, we compare the pixel in
 :-------------:|:---------------:
 ![Pixel intensity](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_pixel_hist.png) |![Power spectrum](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_spec_rel.png)
 
+As see above, the match between generated and reference images drops for larger pixel values and large k.
+
 ### Repository information
 The Table below describes the important codes and their locations
 
