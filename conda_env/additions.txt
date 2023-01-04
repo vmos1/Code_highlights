@@ -1,0 +1,14 @@
+## For env v3
+conda install -c conda-forge ipywidgets
+conda install -c intel scikit-learn
+
+conda install -c conda-forge ipympl
+conda install seaborn
+
+conda update ipympl
+python -m ipykernel install --user --name vpy39 --display-name v3 
+
+conda install -c conda-forge nodejs
+jupyter labextension install @jupyter-widgets/jupyterlab-manager jupyter-matplotlib
+
+jupyter nbextension enable --py widgetsnbextension
