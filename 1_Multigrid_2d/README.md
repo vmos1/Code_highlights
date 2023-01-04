@@ -3,7 +3,7 @@
 
 ## Instructions to run this code: 
 - This code needs the package [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
-`cd code`
+- Enter the directory `code`
 
 ## Compilation
 `g++ -lm -std=c++11 mgrid_ntl.cpp -o a1 `
