@@ -7,7 +7,7 @@ Most lattice gauge theory efforts to study strongly coupled field theories such 
 
 ## 2. Multi-exponential fit of the 4-point function in R x S^2
 We are studying conformal field theory.
-(computed on  $ R \times S^2 $ manifold )
+(computed on  $R \times S^2$ manifold )
 The goal is fit the anti-podal four-point function to a series of exponentials to extract the coeffecients and exponents.
 Using these we can look at the behavior 
 For simiplicity, we use the data from the free thoery, without any interactions.
