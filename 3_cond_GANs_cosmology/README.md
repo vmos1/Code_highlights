@@ -4,6 +4,13 @@ Here, we develop conditional GANs to produce images of size 128^3, conditioned o
 # Plots
 
 We develop a simple GAN trained on 3D images of size 64^3.
+
+### Image comparison
+Below are 2D snapshots of a set of 3D images. The input images are to the left and the GAN generated images are to the right.
+3D GAN: Input images | 3D GAN: Generated images |
+:-------------:|:---------------:
+![2D slices of input images](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_reference_2dslices.png)| ![2D slices of generated images](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_generated_2dslices.png)
+
 ### Metric comparison
 3D cGAN: Pixel intensity | 3D cGAN: Power spectrum  |
 :-------------:|:---------------:
