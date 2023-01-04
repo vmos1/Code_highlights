@@ -1,8 +1,8 @@
 
 
 
-## Running this code: 
-
+## Instructions to run this code: 
+- This code needs the package [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 `cd code`
 
 ## Compilation
