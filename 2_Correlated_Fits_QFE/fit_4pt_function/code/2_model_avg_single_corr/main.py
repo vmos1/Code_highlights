@@ -47,7 +47,7 @@ if __name__=="__main__":
     
     count=0 
     for s in [str(i) for i in s_list][:]:
-        for l in [0,2,4,6][:2]:
+        for l in [0,2,4,6][:]:
             print(s,l)
             df_temp=data_dict[s]['df']
             df_temp=df_temp[df_temp.l==l][['t','coeff']]
@@ -55,7 +55,7 @@ if __name__=="__main__":
 
             tmax=int(np.max(df_temp.t.values))
             print(df_temp.shape)        
-            df_fits,fits_list=f_fit_all_models(df_temp,dict_global,l,s,Lt,tmin_max=int(Lt//4),tmax=tmax,num_exp_min=3,num_exp_max=4)
+            df_fits,fits_list=f_fit_all_models(df_temp,dict_global,l,s,Lt,tmin_max=int(Lt//4),tmax=tmax,num_exp_min=2,num_exp_max=4)
 
             ##### Save fits ########
             ## Save fit results in dataframe
