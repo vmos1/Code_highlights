@@ -3,14 +3,16 @@ Highlighting codes from a few projects
 
 
 ## 1. Lattice Multigrid solver in 2D for Laplace and Wilson operators
-Most lattice gauge theory efforts to study strongly coupled field theories such as Quantum Chromodynamics (QCD) suffer from the problem of `critical slowing down` i.e. conventional solvers slown dramatically as one explores the physics region of small lattice spacing. Lattice multigrid methods have shown remarkable success in ameliorating this problem for different formulations such as Wilson, Staggered and Domain-wall fermions. Here we explore the potential of improved Multigrid methods with the `non-telescoping` method, involving using multiple blocking schemes of the system at lower levels of the system. In this work, we discuss the performance for the Laplace and Wilson operators.
+Most lattice gauge theory efforts to study strongly coupled field theories such as Quantum Chromodynamics (QCD) suffer from the problem of `critical slowing down` i.e. conventional solvers slown dramatically as one explores the physics region of small lattice spacing. Lattice multigrid methods have shown remarkable success in ameliorating this problem for different formulations such as Wilson, Staggered and Domain-wall fermions. 
+
+Here we explore the potential of improved Multigrid methods with the `non-telescoping` method, involving using multiple blocking schemes of the system at lower levels of the system. In this work, we discuss the performance for the Laplace and Wilson operators.
 
 ## 2. Multi-exponential fit of the 4-point function in R x S^2
-We are studying conformal field theory.
-(computed on  $ R \times S^2 $ manifold )
+We are studying the $\phi^4$ theory using the lattice field theory approach on curved manifolds (such as $R \times S^2$) with the intention of exploring the behavior near the conformal field point.
+
 The goal is fit the anti-podal four-point function to a series of exponentials to extract the coeffecients and exponents.
-Using these we can look at the behavior 
-For simiplicity, we use the data from the free thoery, without any interactions.
+Using these we can look at the behavior as we approach the continuum limit.
+For simiplicity, we use the data from the free theory, without any interactions.
 
 ## 3. Conditional GANs to generate mass distributions in the early universe
 We develop conditional Generative Adversarial Neural networks (cGANs) to produce maps of the universe, conditioned on the cosmological paramters $\sigma$.
