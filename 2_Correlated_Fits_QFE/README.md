@@ -13,10 +13,10 @@ The Table below describes the location of codes and data.
 
 | Name | Description |
 | --- | ---|
-| [cGAN_3d_pytorch/code/main.py](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/cGAN_3d_pytorch/code/main.py) | Notebook to fit a single 4pt function |
-|[2_combined_fit_4pt_fcn.ipynb]() | Notebook to perform a combined fit of 4pt functions with different 'l's |
-| |Location of the free theory data |
-
+| [code/1_fit_4pt_function.ipynb](https://github.com/vmos1/Code_highlights/blob/laptop/2_Correlated_Fits_QFE/fit_4pt_function/code/1_fit_4pt_function.ipynb) | Notebook to fit a single 4pt function |
+|[code/3_combined_fit_4pt_fcn.ipynb](https://github.com/vmos1/Code_highlights/blob/laptop/2_Correlated_Fits_QFE/fit_4pt_function/code/3_combined_fit_4pt_fcn.ipynb) | Notebook to perform a combined fit of 4pt functions with different 'l's |
+| data/free_theory/ |Location of the free theory data |
+| [code/2_model_avg_single_corr/main.py](https://github.com/vmos1/Code_highlights/blob/laptop/2_Correlated_Fits_QFE/fit_4pt_function/code/2_model_avg_single_corr/main.py)|Code to perform model averaging |
 
 
 ## Conda environment 
