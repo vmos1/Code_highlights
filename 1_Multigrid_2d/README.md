@@ -3,6 +3,8 @@
 
 ## Running this code: 
 
+`cd code`
+
 ## Compilation
 `g++ -lm -std=c++11 mgrid_ntl.cpp -o a1 `
 
