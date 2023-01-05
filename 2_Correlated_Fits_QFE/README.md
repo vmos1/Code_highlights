@@ -7,11 +7,21 @@ These exponential fits are quite challenging and unstable.
 This folder is self-contained with all the required data. All notebooks can be run directly after cloning the repository.
 
 ## Interactive fitting
-### Fitting a single correlation function. 
-$$ C_1 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{22} \left[ e^{-E_2 \ c \ t} + e^{-E_2 \ c \ (L_t-t)} \right] $$
+### Fitting a single correlation function: 
+
+$$ C_1 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{12} \left[ e^{-E_2 \ c \ t} + e^{-E_2 \ c \ (L_t-t)} \right] + + a_{13} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right]  + + a_{14} \left[ e^{-E_4 \ c \ t} + e^{-E_4 \ c \ (L_t-t)} \right]  + \ldots $$
 
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img1.png)
 ### Combined fit of 4 different correlators
+
+$$ C_0 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{12} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right] + a_{13} \left[ e^{-E_5 \ c \ t} + e^{-E_5 \ c \ (L_t-t)} \right]  + a_{14} \left[ e^{-E_7 \ c \ t} + e^{-E_7 \ c \ (L_t-t)} \right]  + \ldots $$
+
+$$ C_2 = a_{21} \left[ e^{-E_2 \ c \ t} + e^{-E_2 \ c \ (L_t-t)} \right] + a_{22} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right] + a_{23} \left[ e^{-E_5 \ c \ t} + e^{-E_5 \ c \ (L_t-t)} \right]  + a_{24} \left[ e^{-E_7 \ c \ t} + e^{-E_7 \ c \ (L_t-t)} \right]  + \ldots $$
+
+$$ C_4 = a_{31} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right] + a_{32} \left[ e^{-E_5 \ c \ t} + e^{-E_5 \ c \ (L_t-t)} \right] + a_{33} \left[ e^{-E_7 \ c \ t} + e^{-E_7 \ c \ (L_t-t)} \right]  + a_{34} \left[ e^{-E_9 \ c \ t} + e^{-E_9 \ c \ (L_t-t)} \right]  + \ldots $$
+
+$$ C_6 = a_{41} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{42} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right] + a_{43} \left[ e^{-E_6 \ c \ t} + e^{-E_6 \ c \ (L_t-t)} \right]  + a_{44} \left[ e^{-E_7 \ c \ t} + e^{-E_7 \ c \ (L_t-t)} \right]  + \ldots $$
+
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img2.png)
 
 ## Description
