@@ -1,9 +1,12 @@
 # Introduction
-The main goal is to use Generative models to produce 3D images of 
+The main goal is to use Generative models to produce 3D maps of matter distributions corresponding to a specific set of cosmological parameters. 
 Here, we develop conditional GANs to produce images of size 128^3, conditioned on the sigma parameter.
+The images are obtained from N-body simulations run with Pycola.
+The dataset is too large to setup on this repository. So, we only provide the code to implement the cGANs.
+
 # Plots
 
-We develop a simple GAN trained on 3D images of size 64^3.
+We develop a simple GAN trained on 3D images of size upto 128^3.
 
 ### Image comparison
 Below are 2D snapshots of a set of 3D images. The input images are to the left and the GAN generated images are to the right.
