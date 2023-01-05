@@ -12,7 +12,8 @@ $$ C_1 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{12
 
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img1.png)
 
-We implement the model averaging procedure described in [arxiv:2008.01069](https://arxiv.org/abs/2008.01069)
+We also implement the model averaging procedure described in [arxiv:2008.01069](https://arxiv.org/abs/2008.01069)
+
 ### Combined fit of 4 different correlators
 
 $$ C_0 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{12} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right] + a_{13} \left[ e^{-E_5 \ c \ t} + e^{-E_5 \ c \ (L_t-t)} \right]  + a_{14} \left[ e^{-E_7 \ c \ t} + e^{-E_7 \ c \ (L_t-t)} \right]  + \ldots $$
