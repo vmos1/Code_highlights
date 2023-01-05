@@ -1,4 +1,17 @@
 
+## General idea
+
+### Multigrid solvers 
+#### Schematic
+![Schematic](https://github.com/vmos1/Code_highlights/blob/main/1_Multigrid_2d/images/MGrid_schematic.png)
+
+As shown in the figure above, a typical Multigrid solver uses solutions of coarsened forms of the matrix to construct improved estimates of the operator at finer levels. The power of the Multigrid approach is shown in the figure blow. The iterations taken to arrive at the correct solution decreases dramatically as one goes down MG levels, to coarser matrices.
+![MG_performance](https://github.com/vmos1/Code_highlights/blob/main/1_Multigrid_2d/images/MG_iterations_vs_levels.png)
+
+### Non-telescoping approach
+Since the matrix size decreases at lower levels of the MG procedure, this decreases the number of available parallel process , resulting in idling of GPU threads and hence inefficient utilization of GPUs. One possible solultion to this is 
+the non-telescoping approach, which invovles using multiple blocking schemes at lower levels and combining the information from these copies to get an improved estimate of the solution. 
+Here, we explore this at the lowest 2 levels of Multigrid for the Gauge Laplace and Wilson (in progress) operators.
 
 
 ## Instructions to run this code: 
