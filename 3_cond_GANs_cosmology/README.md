@@ -1,7 +1,10 @@
 # Introduction
-The main goal is to use Generative models to produce 3D maps of matter distributions corresponding to a specific set of cosmological parameters. 
-Here, we develop conditional GANs to produce images of size 128^3, conditioned on the sigma parameter.
-The images are obtained from N-body simulations run with Pycola.
+Constraining cosmological parameters of the Lambda-CDM model requires the use of computationally demanding first-principles N-body simulations.
+Our goal is to develop Generative models to produce 3D maps of matter distributions corresponding to a specific set of cosmological parameters.
+
+Here, we develop conditional GANs (cGANs) to produce images of size 128^3, conditioned on the sigma parameter. Once trained, these GANs should enabled fast generation of images as compared to the N-body simulations.
+
+The training images are obtained from N-body simulations run with Pycola.
 The dataset is too large to setup on this repository. So, we only provide the code to implement the cGANs.
 
 # Plots
