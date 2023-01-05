@@ -7,7 +7,9 @@ These exponential fits are quite challenging and unstable.
 This folder is self-contained with all the required data. All notebooks can be run directly after cloning the repository.
 
 ## Interactive fitting
-### Fitting a single correlation function
+### Fitting a single correlation function. 
+$$ C_1 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{22} \left[ e^{-E_2 \ c \ t} + e^{-E_2 \ c \ (L_t-t)} \right] $$
+
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img1.png)
 ### Combined fit of 4 different correlators
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img2.png)
