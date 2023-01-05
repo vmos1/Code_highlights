@@ -1,4 +1,15 @@
 
+## General idea
+
+### Multigrid solvers 
+![Schematic]()
+
+The general idea of multigrid is 
+
+### Non-telescoping approach
+Since the matrix size decreases at lower levels of the MG procedure, this can result in inefficient utilization of GPUs. One possible solultion to this is 
+the non-telescoping approach, which invovles using multiple blocking schemes at lower levels and combining the information from these copies to get an improved estimate of the solution. 
+Here, we explore this at the lowest 2 levels of Multigrid for the Gauge Laplace and Wilson (in progress) operators.
 
 
 ## Instructions to run this code: 
