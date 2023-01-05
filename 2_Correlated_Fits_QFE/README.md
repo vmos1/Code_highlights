@@ -1,6 +1,6 @@
 # Fit the antipodal 4 pt function to the expected form of a tower of exponentials
 The goal is to fit the antipodal four-point function to the expected form to extract coefficient and exponents to compute physical quantities.
-Such exponential fits are quite challenging and unstable.
+Such exponential fits are quite challenging and unstable. 
 
 For the test data given here, which is for the free theory, the form is a series of integer exponents. 
 This folder is self-contained with all the required data. All notebooks can be run directly after cloning the repository.
@@ -11,6 +11,8 @@ This folder is self-contained with all the required data. All notebooks can be r
 $$ C_1 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{12} \left[ e^{-E_2 \ c \ t} + e^{-E_2 \ c \ (L_t-t)} \right] + + a_{13} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right]  + + a_{14} \left[ e^{-E_4 \ c \ t} + e^{-E_4 \ c \ (L_t-t)} \right]  + \ldots $$
 
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img1.png)
+
+We implement the model averaging procedure described in [arxiv:2008.01069](https://arxiv.org/abs/2008.01069)
 ### Combined fit of 4 different correlators
 
 $$ C_0 = a_{11} \left[ e^{-E_1 \ c \ t} + e^{-E_1 \ c \ (L_t-t)} \right] + a_{12} \left[ e^{-E_3 \ c \ t} + e^{-E_3 \ c \ (L_t-t)} \right] + a_{13} \left[ e^{-E_5 \ c \ t} + e^{-E_5 \ c \ (L_t-t)} \right]  + a_{14} \left[ e^{-E_7 \ c \ t} + e^{-E_7 \ c \ (L_t-t)} \right]  + \ldots $$
