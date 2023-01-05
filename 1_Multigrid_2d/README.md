@@ -2,6 +2,7 @@
 ## General idea
 
 ### Multigrid solvers 
+#### Schematic
 ![Schematic](https://github.com/vmos1/Code_highlights/blob/main/1_Multigrid_2d/images/MGrid_schematic.png)
 
 As shown in the figure above, a typical Multigrid solver uses solutions of coarsened forms of the matrix to construct improved estimates of the operator at finer levels. 
