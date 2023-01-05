@@ -1,9 +1,8 @@
 # Fit the antipodal 4 pt function to the expected form of a tower of exponentials
-The goal is to fit the antipodal four-point function to the expect form.
+The goal is to fit the antipodal four-point function to the expected form to extract coefficient and exponents to compute physical quantities.
+Such exponential fits are quite challenging and unstable.
+
 For the test data given here, which is for the free theory, the form is a series of integer exponents. 
-
-These exponential fits are quite challenging and unstable.
-
 This folder is self-contained with all the required data. All notebooks can be run directly after cloning the repository.
 
 ## Interactive fitting
