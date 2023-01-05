@@ -23,6 +23,6 @@ The Table below describes the location of codes and data.
 ### Fitting a single correlation function
 ![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img1.png)
 ### Combined fit of 4 different correlators
-![Combined fit of 4 different correlators](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img2.png)
-
-![Video](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img2.png)
+![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img2.png)
+### Video
+![](https://github.com/vmos1/Code_highlights/blob/main/2_Correlated_Fits_QFE/images/fit_img2.png)
