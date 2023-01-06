@@ -1,5 +1,5 @@
 # Code_highlights
-Highlighting codes from a few projects
+This is a repository highlighting codes from a few of my current projects.
 
 
 ## 1. Lattice Multigrid solver in 2D for Laplace and Wilson operators
