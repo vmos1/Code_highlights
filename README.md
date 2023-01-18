@@ -1,5 +1,5 @@
 # Code_highlights
-This is a repository highlighting codes from a few of my current projects.
+This is a repository highlighting codes from a few of my current projects. A brief description is provided below. Further details and illustrations are provided in README files in each respective folder.
 
 
 ## 1. Lattice Multigrid solver in 2D for Laplace and Wilson operators
