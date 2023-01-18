@@ -19,7 +19,7 @@ For simiplicity, we use the data from the free theory, without any interactions.
 
 ## 3. Conditional GANs to generate mass distributions in the early universe
 We develop conditional Generative Adversarial Neural networks (cGANs) to produce maps of the universe, conditioned on the cosmological paramters $\sigma$.
-The models are trained with images obtained from N-body simulations. The goal is to use cGANs to obtain novel images in regions of parameter space not explored by N-body simulations.
+The models are trained with images obtained from N-body simulations. Once trained, these ML models can very quickly generate novel images belonging to the distribution. Conditional GANs offer the opportunity to obtain novel images in regions of parameter space not explored by N-body simulations.
 
 
 ## Setting up the environment
