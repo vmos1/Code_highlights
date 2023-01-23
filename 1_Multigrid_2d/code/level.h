@@ -131,26 +131,48 @@ void Level::f_relax(int level, int num_iter, params p, int gs_flag){
 void Level::f_compute_lvl0_matrix(Gauge g, params p){
     
     // Compute D matrix for level 0
-    int L, level,d1,d2,n0;
-    level=0;
-    L=p.size[level];
-    n0=p.n_dof[level];
+    int L, n0;
     
-    ColorMatrix Dtemp(n0,n0); // Identity matrix in color space for diagonal elements
-    for(int d1=0; d1 < n0; d1++) for(int d2=0; d2 < n0; d2++) { 
-        if (d1==d2) Dtemp(d1,d2)=1.0; 
-        else Dtemp(d1,d2)=0.0;
+    L=p.size[0];
+    n0=p.n_dof[0];
+    
+    if (p.stencil=="laplace") { 
+
+        ColorMatrix Dtemp(n0,n0); // Identity matrix in color space for diagonal elements
+        for(int d1 = 0; d1 < n0; d1++) for(int d2 = 0; d2 < n0; d2++) { 
+            if (d1 == d2) Dtemp(d1,d2)=1.0; 
+            else Dtemp(d1,d2)=0.0;       }
+                
+        for(int x = 0; x < L; x++) for(int y = 0; y < L; y++){
+            D(x+y*L,0)=(-1.0/p.scale[0])*Dtemp;          // Diagonal element
+            D(x+y*L,1)=g.U(x+y*L               ,0);  // x+1 element
+            D(x+y*L,2)=g.U((x-1+L)%L+y*L  ,0).adjoint(); 
+            D(x+y*L,3)=g.U(x+y*L               ,1) ; // y+1 
+            D(x+y*L,4)=g.U(x+((y-1+L)%L)*L,1).adjoint(); 
+            }
     }
     
-    for(int x=0; x<L; x++) for(int y=0; y<L; y++){
-        D(x+y*L,0)=(-1.0/p.scale[level])*Dtemp;          // Diagonal element
-        D(x+y*L,1)=g.U(x+y*L               ,0);  // x+1 element
-        D(x+y*L,2)=g.U((x-1+L)%L+y*L  ,0).adjoint(); 
-        D(x+y*L,3)=g.U(x+y*L               ,1) ; // y+1 
-        D(x+y*L,4)=g.U(x+((y-1+L)%L)*L,1).adjoint(); 
-        }
-}
+    else if(p.stencil=="wilson") {
+        // Define matrices in spinor space
+        ColorMatrix gamma1(p.spinor_dim, p.spinor_dim); 
+        ColorMatrix gamma2(p.spinor_dim, p.spinor_dim); 
+        ColorMatrix Idty  (p.spinor_dim, p.spinor_dim);
+        
+        gamma1<<0,1,1,0;
+        gamma2<<0,Complex(0,-1.0),Complex(0,1.0),0;
+        Idty<<1,0,0,1;
 
+        for(int x = 0; x < L; x++) for(int y = 0; y < L; y++){
+            D(x+y*L,0)=(+1.0/p.scale[0])          *(Idty);
+            D(x+y*L,1)=g.U(x+y*L               ,0)(0,0)      *0.5*(Idty-gamma1);  // x+1 element
+            D(x+y*L,2)=g.U((x-1+L)%L+y*L  ,0).adjoint()(0,0) *0.5*(Idty+gamma1); 
+            D(x+y*L,3)=g.U(x+y*L               ,1)(0,0)      *0.5*(Idty-gamma2) ; // y+1 
+            D(x+y*L,4)=g.U(x+((y-1+L)%L)*L,1).adjoint()(0,0) *0.5*(Idty+gamma2); 
+            }
+        
+    }
+    
+}
 
 void Level::f_near_null(int level, int quad, int num_iters, int gs_flag, params p){
     // Build near null vectors and normalize them
@@ -172,26 +194,57 @@ void Level::f_near_null(int level, int quad, int num_iters, int gs_flag, params 
     // Create temp Level object
     Level lvl_temp;
     lvl_temp.f_init_level(level, 0, p);
-        
     lvl_temp.D=D; // Set D to D matrix at that level
+    
     // Set r to zero for A x = 0
     for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) for(int d2 = 0; d2 < nf; d2++) 
         lvl_temp.r(x+y*L)(d2)=0.0;
     
-    // Relaxation with zero source
-    for(int d1 = 0; d1 < nc; d1++){  // Generate near null vector set for each n_dof of coarse level
-        // Copy phi_null to a vector
-        for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) 
-            lvl_temp.phi(x+y*L) = phi_null(x+y*L).row(d1); 
+    
+    if (p.stencil=="laplace") {
+    
+        // Relaxation with zero source
+        for(int d1 = 0; d1 < nc; d1++){  // Generate near null vector set for each n_dof of coarse level
+            // Copy phi_null to a vector
+            for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) 
+                lvl_temp.phi(x+y*L) = phi_null(x+y*L).row(d1); 
 
-        for (int i = 0; i < num; i++){  // Solve Ax = 0, then global normalization
-            lvl_temp.f_relax(level, iters_per_norm,p,gs_flag); 
-            g_norm = f_g_norm(lvl_temp.phi, level, 1, p);
-            // printf("d1: %d, num %d:\tGlobal norm %25.20e\n",d1,i,g_norm);
+            for (int i = 0; i < num; i++){  // Solve Ax = 0, then global normalization
+                lvl_temp.f_relax(level, iters_per_norm,p,gs_flag); 
+                g_norm = f_g_norm(lvl_temp.phi, level, 1, p);
+                // printf("d1: %d, num %d:\tGlobal norm %25.20e\n",d1,i,g_norm);
+            }
+            // f_block_norm(phi_temp,level,quad, p);
+            // Conjugate phi_null. This is to ensure gauge invariance. By storing as an nc x nf matrix, you are already transposing it. Now, also need to conjugate it.
+            for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) phi_null(x+y*L).row(d1)=lvl_temp.phi(x+y*L).conjugate();      // Assign near-null vector to phi_null
         }
-        // f_block_norm(phi_temp,level,quad, p);
-        // Conjugate phi_null. This is to ensure gauge invariance. By storing as an nc x nf matrix, you are already transposing it. Now, also need to conjugate it.
-        for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) phi_null(x+y*L).row(d1)=lvl_temp.phi(x+y*L).conjugate();      // Assign near-null vector to phi_null
+    }
+    
+    else if (p.stencil=="wilson") {
+        for(int d1 = 0; d1 < nc/2; d1++){  // Generate near null vector set for each n_dof of coarse level
+            // Copy phi_null to a vector
+            for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) 
+                lvl_temp.phi(x+y*L) = phi_null(x+y*L).row(d1); 
+
+            for (int i = 0; i < num; i++){  // Solve Ax = 0, then global normalization
+                lvl_temp.f_relax(level, iters_per_norm,p,gs_flag); 
+                g_norm = f_g_norm(lvl_temp.phi, level, 1, p);
+                // printf("d1: %d, num %d:\tGlobal norm %25.20e\n",d1,i,g_norm);
+            }
+            // f_block_norm(phi_temp,level,quad, p);
+            // Conjugate phi_null. This is to ensure gauge invariance. By storing as an nc x nf matrix, you are already transposing it. Now, also need to conjugate it.
+            // for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) phi_null(x+y*L).row(d1)=lvl_temp.phi(x+y*L).conjugate();      // Assign near-null vector to phi_null
+
+            for(int x = 0; x < L; x++) for(int y = 0; y < L; y++) {// Assign near-null vector to phi_null
+                for(int d2 = 0; d2 < nf; d2++) {
+                    if (d2 < nf/2){ // 1+gamma5 
+                        phi_null(x+y*L).row(d1)(d2)     =conj(lvl_temp.phi(x+y*L)(d2)); 
+                        phi_null(x+y*L).row(nc/2+d1)(d2)=Complex(0,0); }
+                    else {         // 1-gamma5
+                        phi_null(x+y*L).row(nc/2+d1)(d2)=conj(lvl_temp.phi(x+y*L)(d2)); 
+                        phi_null(x+y*L).row(d1)(d2)     =Complex(0,0); }
+            }}
+        }
     }
 }
 

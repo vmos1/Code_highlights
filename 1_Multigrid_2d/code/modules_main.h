@@ -37,7 +37,7 @@ void f_init_NTL(Level NTL[][4], params p, int rand){
 }
 
 void f_read_near_null(Level * LVL, params p, int t_flag){
-    // Write near null vectors to file
+    // Read near null vectors from file
     FILE* pfile;
     char fname[1024];
     snprintf(fname,1024, "Near-null_L%d_blk%d_ndof%d.txt",p.size[0],p.block_x,p.n_dof_scale);
@@ -45,6 +45,11 @@ void f_read_near_null(Level * LVL, params p, int t_flag){
     
     double re,im;
     pfile = fopen (fname, "r");
+    
+    if (pfile == NULL){
+        cout<<endl<<"Cannot find file "<<fname<<endl;
+        exit(1); 
+    }
     
     for(int lvl = 0; lvl < p.nlevels; lvl++){
         for (int j = 0; j < p.size[lvl]*p.size[lvl]; j++){
@@ -275,8 +280,9 @@ void f_MG_simple(Level LVL [], params p){
 }
 
 
-// // Module for non-telescoping
 void f_min_res(Complex *a_copy, Level LVL[], Level NTL[][4], int num_copies, int level, params p){
+    
+    // Module for non-telescoping with minimal-residual 
     
     Eigen::Matrix<Complex, Eigen::Dynamic, Eigen::Dynamic> A(num_copies,num_copies); // The min-res matrix (4x4)
     // Eigen::Matrix<Complex> A(4,4); // The min-res matrix (4x4)
@@ -303,9 +309,11 @@ void f_min_res(Complex *a_copy, Level LVL[], Level NTL[][4], int num_copies, int
     for (int q_copy = 0; q_copy < 4; q_copy++){
         phi_temp1[q_copy] = VArr1D(j_size*j_size);
         phi_temp2[q_copy] = VArr1D(j_size*j_size);
+        
         for (int j = 0; j < j_size*j_size ; j++){
             phi_temp1[q_copy](j) = ColorVector(j_ndof);
             phi_temp2[q_copy](j) = ColorVector(j_ndof);
+            
             for(int d1 = 0; d1 < j_ndof; d1++) {
                 phi_temp1[q_copy](j)(d1) = 0.0; 
                 phi_temp2[q_copy](j)(d1) = 0.0; }
@@ -313,26 +321,55 @@ void f_min_res(Complex *a_copy, Level LVL[], Level NTL[][4], int num_copies, int
     
     // Compute x_i^dagger . D . x_j  ,where i,j represent copy numbers
     
-    for(int q1 = 0; q1 < num_copies; q1++){ // Compute D . x_j 
-        LVL[level].f_apply_D(phi_temp1[q1],NTL[level][q1].phi,level,p);
-        }
-    
-    for(int q1 = 0; q1 < num_copies; q1++) // Compute x_i^dagger . x_temp_i
-        for(int q2 = 0; q2 < num_copies; q2++){
+    if (p.stencil=="laplace") {
+        
+        for(int q1 = 0; q1 < num_copies; q1++){ // Compute D . x_j 
+            LVL[level].f_apply_D(phi_temp1[q1],NTL[level][q1].phi,level,p);
+            }
+
+        for(int q1 = 0; q1 < num_copies; q1++) // Compute x_i^dagger . x_temp_i
+            for(int q2 = 0; q2 < num_copies; q2++){
+                for (int x = 0; x < L; x++) for(int y = 0; y < L; y++){
+                    A(q1,q2)+= (1.0)* ( (NTL[level][q1].phi(x+y*L)).adjoint()*phi_temp1[q2](x+y*L))(0,0);
+                } }
+
+        for(int q1 = 0; q1 < num_copies; q1++)
             for (int x = 0; x < L; x++) for(int y = 0; y < L; y++){
-                A(q1,q2)+= (1.0)* ( (NTL[level][q1].phi(x+y*L)).adjoint()*phi_temp1[q2](x+y*L))(0,0);
-            } }
+                src(q1)+= NTL[level][q1].phi(x+y*L).dot(LVL[level].r(x+y*L));
+                // Note: .dot() means complex dot product c^dagger c 
+            }
+    }
     
-    for(int q1 = 0; q1 < num_copies; q1++)
-        for (int x = 0; x < L; x++) for(int y = 0; y < L; y++){
-            src(q1)+= NTL[level][q1].phi(x+y*L).dot(LVL[level].r(x+y*L));
-            // Note: .dot() means complex dot product c^dagger c 
+    else if (p.stencil=="wilson") {
+        
+        for(int q1 = 0; q1 < num_copies; q1++){ // Compute D . x_j 
+            LVL[level].f_apply_D(phi_temp1[q1],NTL[level][q1].phi,level,p);
+            }
+
+        for(int q1 = 0; q1 < num_copies; q1++) // Compute x_i^dagger . x_temp_i
+            for(int q2 = 0; q2 < num_copies; q2++){
+                for (int x = 0; x < L; x++) for(int y = 0; y < L; y++){
+                    // A(q1,q2)+= (1.0)* ( (NTL[level][q1].phi(x+y*L)).adjoint()*phi_temp1[q2](x+y*L))(0,0);
+                    A(q1,q2)+= (1.0)* ( (phi_temp1[q1](x+y*L)).adjoint()*phi_temp1[q2](x+y*L))(0,0);
+                } 
+                    A(q1,q2)=real(A(q1,q2));
+            }
+
+        for(int q1 = 0; q1 < num_copies; q1++){
+            for (int x = 0; x < L; x++) for(int y = 0; y < L; y++){
+                // src(q1)+= NTL[level][q1].phi(x+y*L).dot(LVL[level].r(x+y*L));
+                src(q1)+=(phi_temp1[q1](x+y*L).adjoint()*LVL[level].r(x+y*L))(0,0);
+                // Note: .dot() means complex dot product c^dagger c 
+            }
+            src(q1)=real(src(q1));
         }
-//     // Solve the 4x4 or smaller matrix A x = b
+    }
+    
+    /********/
+    // Solve the 4x4 or smaller matrix A x = b
     X = A.colPivHouseholderQr().solve(src);    // X = A.().solve(src);
     for(int i=0; i<num_copies; i++) a_copy[i]=X(i); 
 }
-
 
 void f_scale_phi(Level L1, Level NTL[][4], Complex *a_copy, int num_copies, int size, int nc, int lvl){
     // Scale each copy and add to phi at next-to-lowest level

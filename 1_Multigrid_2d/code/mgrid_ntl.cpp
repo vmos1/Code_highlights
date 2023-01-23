@@ -50,6 +50,8 @@ int main (int argc, char *argv[])
     // Read-in the Gauge field
     Gauge g(p,1);
     
+    // exit(1);
+    
     // Compute lvl0 D matrix=gauged Laplacian
     LVL[0].f_compute_lvl0_matrix(g, p);      
     

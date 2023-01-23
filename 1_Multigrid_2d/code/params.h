@@ -15,11 +15,14 @@ class params {
         int write_interval;
         int max_iters; // max iterations for main code    
         double beta;
-
+        string stencil; // Stencil =['laplace','wilson']
+        int spinor_dim; // 2 in 2D, 4 in 3D
+        int n_color;    // Color dof in top level
+    
         double m; //mass
         int size[20]; // Lattice size 
         int n_dof[20]; // Degrees of freedom per site
-        int n_dof_scale; // Factor of increase in dof per site with level
+        int n_dof_scale; // // N_dof at higher levels
         int block_x,block_y;
         double scale[20]; // scale factor 
         double a[20]; // Lattice spacing 
@@ -51,11 +54,10 @@ params::params(char *argv[]){
         exit(1);
     }
 
+    n_color        = 1;
     a[0]           = 1.0;
     size[0]        = L;
-    scale[0]       = 1.0/(4.0+m*a[0]*a[0]);// 1/(4+m^2 a^2) 
-    n_dof[0]       = 1;
-    n_dof_scale    = 2; // N_dof at higher levels
+    
     gs_flag        = 1; // Gauss-seidel = 1, Jacobi = 0
     total_copies   = 4;  // Number of copies for non-telescoping
     quad           = 1;    // quadrant for blocking 1,2,3 or 4 
@@ -63,6 +65,25 @@ params::params(char *argv[]){
     write_interval = 1; // Interval at which you write values to file
     beta           = 32.0; // Value of coupling for heat-bath code
     res_threshold  = 1.0e-13;
+    stencil        = "laplace"; 
+    // stencil        = "wilson";
+    
+    // Stencil- dependent initializations
+    if (stencil=="wilson") { 
+        n_dof[0]     = 2;
+        spinor_dim   = 2;  
+        n_dof_scale  = 4;  
+        scale[0]     = 1.0/(2.0+m*a[0]*a[0]);// 1/(2+m^2 a^2) 
+    } 
+    else if (stencil=="laplace")  { 
+        n_dof[0]     = 1;
+        spinor_dim   = 1;  
+        n_dof_scale  = 2;  
+        scale[0]     = 1.0/(4.0+m*a[0]*a[0]);// 1/(4+m^2 a^2) 
+    }
+    else {
+        cout<<"Incorrect stencil: "<<stencil<<".\tNeed either laplace or 'wilson' "<<endl;
+        exit(1); }
     
     // file pointers to save MG output
     pfile1 = fopen ("results_gen_scaling.txt","a"); 
@@ -73,7 +94,6 @@ params::params(char *argv[]){
     char fname[100];
     for (int lvl = 0; lvl < nlevels+1; lvl++){
         snprintf(fname,100,"results_res_lvl-%d.txt",lvl); 
-        
         pfile4[lvl] = fopen(fname,"w");
     }
     
@@ -85,6 +105,7 @@ params::params(char *argv[]){
     exit(1);
     }
 
+    cout<<"Using stencil:\t"<<stencil<<endl;
     printf("V cycle with %d levels for lattice of size %d. Max levels %d\n",nlevels,L,max_levels);
     printf("\nUsing quadrant %d\n",quad);
     printf("Telescoping flag is %d\n",t_flag);
@@ -101,7 +122,9 @@ params::params(char *argv[]){
 
     printf("\nLevel\tL\tN_dof");
     for(int level = 0; level < nlevels+1; level++){
-        printf("\n%d\t%d\t%d",level,size[level],n_dof[level]);} 
+        printf("\n%d\t%d\t%d",level,size[level],n_dof[level]);}
+    cout<<endl;
+    
 }
     
 void params::f_close(){ 
