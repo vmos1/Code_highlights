@@ -50,8 +50,7 @@ if __name__=="__main__":
     ### Load entire data ####
     data_dict={}
 
-    #s_list=[4,8,16,32]
-    s_list=[4,8]
+    s_list=[4,8,16,32]
     for s in s_list:
         
         print(data_dir+'s2xr_free_q5k{0}t*_4pt_pl.dat'.format(s))
