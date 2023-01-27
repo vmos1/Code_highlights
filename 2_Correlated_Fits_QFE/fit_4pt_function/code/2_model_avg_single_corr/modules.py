@@ -42,8 +42,8 @@ def f_plot_meff(t,y,max=200):
     val=df1.meff.values
     x,y,yerr=df1.t.values,[i.mean for i in val],[i.sdev for i in val]
     plt.errorbar(x,y,yerr,marker='o',linestyle='')
-    
-    
+
+
 class corr:
     ''' Class to store correlators C(t) for specific l and s'''
     def __init__(self,df,l,c,s,Lt):
@@ -83,14 +83,13 @@ class corr:
         if plot: self.f_fit_plot(min(plt_range),max(plt_range),error_band=True,semilog=True)
         
         # Print description at the end
-        if verbose:
-            for k in self.fit.p.keys():
-                if not use_prior:
-                    print(k,'\tInit',self.fit.p0[k],'\t---Final',self.fit.p[k])
-                else : 
-                    print(k,'\tInit',self.fit.prior[k],'\t---Final',self.fit.p[k])    
+        for k in self.fit.p.keys():
+            if not use_prior:
+                print(k,'\tInit',self.fit.p0[k],'\t---Final',self.fit.p[k])
+            else : 
+                print(k,'\tInit',self.fit.prior[k],'\t---Final',self.fit.p[k])    
 
-            print("chi-sqr",self.fit.chi2/self.fit.dof)
+        print("chi-sqr",self.fit.chi2/self.fit.dof)
 
         
     def f_fit_plot(self,start=0,end=None,error_band=True,semilog=True):
@@ -246,7 +245,6 @@ def f_get_data_df(fname,dict_global):
     ### Process data
     # df_data.apply(lambda row: f_scale_4pt(row,s),axis=1)
     df_data['coeff']=df_data.apply(lambda row: f_scale_4pt(row,s,dict_global),axis=1)
-    df_data.loc[df_data.l==0,['coeff']]-=1 ## subtract out the 1 for l=0
     
     # df_data['coeff']=np.array([gv.gvar(i,i*0.01) for i in df_data.coeff.values])
     df_data['coeff']=np.array([gv.gvar(i,max(i*1e-4,1e-13)) for i in df_data.coeff.values]) # Ensure error doesn't go below machine precision
@@ -403,6 +401,9 @@ def model_avg(gv_list, pr_list):
     var_avg += np.sum(gv.mean(gv_list) ** 2 * pr_list)
     var_avg -= (np.sum(gv.mean(gv_list) * pr_list)) ** 2
 
+#     print(np.sum(pr_list))
+#     print(mean_avg,np.sqrt(var_avg))
+#     return gv.gvar(mean_avg, np.sqrt(var_avg))
 #     Divide by sum of probs, since sum don't add to 1 for subset
     return gv.gvar(mean_avg/np.sum(pr_list), np.sqrt(var_avg)/np.sum(pr_list)) 
 
@@ -413,6 +414,8 @@ def f_avg_all_models(df_fits):
     ## Dataframe storing model averaged parameters and other info
     
     num_exp_max=np.max(np.unique(df_fits.num_exp.values))
+    
+    
     model_params=["a{0}".format(i) for i in range(num_exp_max)]+["E{0}".format(i) for i in range(num_exp_max)] + ['const']
     df_avg=pd.DataFrame(columns=model_params)
     
