@@ -9,11 +9,6 @@ Correlators for analysis are stored in `data/stored_data`
 
 - To perform a combined fit of 4pt functions with different 'l's use [fit_4pt_function/code/3_combined_fit_4pt_fcn.ipynb](https://github.com/vmos1/Code_highlights/tree/main/2_Correlated_Fits_QFE/fit_4pt_function/code/3_combined_fit_4pt_fcn.ipynb)
 
-
-
-| [fit_4pt_function/code/2_model_avg_single_corr/main.py](https://github.com/vmos1/Code_highlights/tree/main/2_Correlated_Fits_QFE/fit_4pt_function/code/2_model_avg_single_corr/main.py)|Code to perform model averaging |
-
-
 ## Perform model averaging 
 
 1. `python code/2_model_avg_single_corr/main.py`
