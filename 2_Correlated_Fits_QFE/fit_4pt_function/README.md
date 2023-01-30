@@ -10,7 +10,7 @@ Correlators for analysis are stored in `data/stored_data`
 - To perform a combined fit of 4pt functions with different 'l's use [code/3_combined_fit_4pt_fcn.ipynb](https://github.com/vmos1/Code_highlights/tree/main/2_Correlated_Fits_QFE/fit_4pt_function/code/3_combined_fit_4pt_fcn.ipynb)
 
 ## Perform model averaging 
-1. conda activate <conda env name>
+1. conda activate \<conda env name\>
 2. `python code/2_model_avg_single_corr/main.py`
 3. Results are stored in `data/stored_results/`
 
