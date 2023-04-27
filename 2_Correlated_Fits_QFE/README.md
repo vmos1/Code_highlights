@@ -1,7 +1,7 @@
 # Fit the antipodal 4 pt function to the expected form of a tower of exponentials
 The goal is to fit the antipodal four-point function to the expected form to extract coefficient and exponents to compute physical quantities.
 Such exponential fits are quite challenging and unstable. 
-We deal with this using the methods of Bayesian model averaging. Using the method outlined in [arxiv:2008.01069](https://arxiv.org/abs/2008.01069), we first perform a variety of fits, allowing variations in the dataset and the model complexity. We then perform a weighted average of the fit parameters obtained from these different fits using the Akaike Information Criterion (AIC) which penalized fits with less input data and fewer free parameters. 
+We deal with this using the methods of Bayesian model averaging (outlined in [arxiv:2008.01069](https://arxiv.org/abs/2008.01069)). We first perform a variety of fits, allowing variations in the dataset and the model complexity. We then perform a weighted average of the fit parameters obtained from these different fits using the Akaike Information Criterion (AIC) which penalizes fits with less input data and fewer free parameters. 
 Using this procedure we obtain more robust estimates of the physical quantities.
 
 
