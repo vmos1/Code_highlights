@@ -1,6 +1,6 @@
 # Introduction
-Constraining cosmological parameters of the Lambda-CDM model requires the use of computationally demanding first-principles N-body simulations.
-Our goal is to develop Generative models to produce 3D maps of matter distributions corresponding to a specific set of cosmological parameters.
+The Lambda-CDM model is currently the best theory of cosmology. It has 10 parameters that are obtained from analysis of data from astronomical telescopes. Constraining cosmological parameters of the Lambda-CDM model requires the use of maps of matter distribution in the early universe. These are obtained from computationally demanding first-principles N-body simulations.
+An alternative approach is to use Generative models to produce such 3D maps more quickly and efficiently after training them with data obtained from N-body simulations.
 
 Here, we develop conditional GANs (cGANs) to produce images of size 128^3, conditioned on the sigma parameter. Once trained, these GANs should enabled fast generation of images as compared to the N-body simulations.
 
