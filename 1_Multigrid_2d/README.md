@@ -1,7 +1,7 @@
 
 ## General idea
-The main goal is to solve a linear system of the form **A** **x** = **b**.
-Conventionally, one uses efficient iterative Krylov solvers such as Conjugate Gradient to obtain **x** given an input matrix **A** and source **b**.
+The main goal is to solve a linear system of the form **A** **x** = **b**,  to obtain **x** given an input matrix **A** and source **b**.
+Conventionally, one uses efficient iterative Krylov solvers such as Conjugate Gradient.
 However, if the eigenvalues of the matrix **A** has small eigenvalues, most iterative solvers stall and this is referred to as *critical slowing down*.
 Multigrid Solvers are multi-scale algorithms that mitigate this problem.
 
