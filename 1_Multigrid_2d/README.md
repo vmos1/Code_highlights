@@ -18,7 +18,7 @@ A typical Multigrid solver uses solutions of coarsened forms of the matrix to co
 Since the matrix size decreases at lower levels of the MG procedure, this decreases the number of available parallel process, resulting in idling of GPU threads and hence inefficient utilization of GPUs. One possible solultion to this is the non-telescoping approach, which invovles using multiple blocking schemes at lower levels and combining the information from these copies using a minimal residual procedure to get an improved estimate of the solution. Here, we explore this at the lowest 2 levels of Multigrid for the Gauge Laplace and Wilson (in progress) operators.
 
 ![Results for Laplace operator](https://github.com/vmos1/Code_highlights/blob/main/1_Multigrid_2d/images/ntl_laplace.png)
-The plot above shows the iterations for convergence as a function of the number of non-telescoping copies. There is a significant performance gain due to the minimal residual as seen by the speed-up obtained even for 1 copy.
+The plot above shows the iterations for convergence as a function of the number of non-telescoping copies for the Laplace operator. There is a significant performance gain due to the minimal residual as seen by the speed-up obtained even for 1 copy.
 We are currently working on developing such a scheme for the gauge Wilson operator.
 
 
