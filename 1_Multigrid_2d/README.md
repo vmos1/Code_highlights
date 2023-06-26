@@ -1,5 +1,7 @@
 
 ## General idea
+The main goal is to solve a linear system of the form A x = b
+Conventionally, one uses efficient Krylov solvers such as Conjugate Gradient to obtain x given *A and *b.
 
 ### Multigrid solvers 
 #### Schematic
