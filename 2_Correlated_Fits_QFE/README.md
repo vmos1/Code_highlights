@@ -1,6 +1,6 @@
 # Fit the antipodal 4 pt function to the expected form of a tower of exponentials
-The goal is to fit the antipodal four-point function to the expected form to extract coefficient and exponents to compute physical quantities.
-
+In lattice field, a very common calculation involves fitting two-point correlation functions to a set of exponential terms. Physical quantities can be then extracted from the fit parameters i.e. coefficients and exponents. Physically, the exponenets correspond to the masses of the particles of the theory.
+The goal here is to fit the antipodal four-point function to a sum of exponential terms.
 
 Such exponential fits are quite challenging and unstable. The interactive jupyter notebooks help explore the fitting procedure in detail.
 To obtain robust estimates of fit parameters, we use the method of Bayesian model averaging (outlined in [arxiv:2008.01069](https://arxiv.org/abs/2008.01069)). We first perform a variety of fits, allowing variations in the dataset and the model complexity. We then perform a weighted average of the fit parameters obtained from these different fits using the Akaike Information Criterion (AIC) which penalizes fits with less input data and fewer free parameters. 
