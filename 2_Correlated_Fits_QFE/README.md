@@ -1,5 +1,5 @@
 # Fit the antipodal 4 pt function to the expected form of a tower of exponentials
-In lattice field, a very common calculation involves fitting two-point correlation functions to a set of exponential terms. Physical quantities can be then extracted from the fit parameters i.e. coefficients and exponents. Physically, the exponenets correspond to the masses of the particles of the theory.
+In lattice quantum field theory, a very common calculation involves fitting two-point correlation functions to a set of exponential terms. Physical quantities can be then extracted from the fit parameters i.e. coefficients and exponents. Physically, the exponenets correspond to the masses of the particles of the theory.
 The goal here is to fit the antipodal four-point function to a sum of exponential terms.
 
 Such exponential fits are quite challenging and unstable. The interactive jupyter notebooks help explore the fitting procedure in detail.
