@@ -9,7 +9,7 @@ Multigrid Solvers are multi-scale algorithms that mitigate this problem.
 #### Schematic
 ![Schematic](https://github.com/vmos1/Code_highlights/blob/main/1_Multigrid_2d/images/MGrid_schematic.png)
 
-As shown in the figure above, a typical Multigrid solver uses solutions of coarsened forms of the matrix to construct improved estimates of the operator at finer levels. The power of the Multigrid approach is shown in the figure blow. The iterations taken to arrive at the correct solution decreases dramatically as one goes down MG levels, to coarser matrices.
+A typical Multigrid solver uses solutions of coarsened forms of the matrix to construct improved estimates of the solution of the operator at finer levels. The general schematic is shown in the figure above. The power of the Multigrid approach is shown in the figure blow. The iterations taken to arrive at the correct solution decreases dramatically as one goes down MG levels, to coarser matrices.
 ![MG_performance](https://github.com/vmos1/Code_highlights/blob/main/1_Multigrid_2d/images/MG_iterations_vs_levels.png)
 
 ### Non-telescoping approach
