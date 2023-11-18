@@ -7,11 +7,8 @@ Most lattice gauge theory efforts to study strongly coupled field theories such 
 
 Here we explore the potential of improved Multigrid methods with the `non-telescoping` approach, involving using multiple blocking schemes of the system at lower levels of the system. In this work, we discuss the performance for the Laplace and Wilson operators.
 
-## 2. Multi-exponential fit of the 4-point function in $R  \times S^2$
-
-The study of Conformal field theories (CFTs) is challenging on the lattice, due to their property of scale invariance. The quantum finite element method [arxiv:2006.15636](https://arxiv.org/abs/2006.15636) has shown great promise in studying CFTs on the lattice. 
-
-Here, we are study the $\phi^4$ theory using the lattice field theory approach on curved manifolds (such as $R \times S^2$) with the intention of exploring the behavior near the conformal fixed point.
+## 2. Multi-exponential fit of the 4-point function in $R  \times S^2$ 
+The quantum finite element method has shown great promise in studying Conformal Field theories (CFTs) on the lattice. Here, we are study the $\phi^4$ theory using the lattice field theory approach on curved manifolds (such as $R \times S^2$) with the intention of exploring the behavior near the conformal fixed point [arXiv:2311.01100](https://arxiv.org/abs/2311.01100).
 
 The goal is fit the anti-podal four-point function to a series of exponentials to extract the coeffecients and exponents.
 Using these we can look at the behavior as we approach the continuum limit.
