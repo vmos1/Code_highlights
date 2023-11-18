@@ -1,37 +1,32 @@
 # Introduction
-The Lambda-CDM model is currently the best theory of cosmology. It has 10 parameters that are obtained from analysis of data from astronomical telescopes. Constraining cosmological parameters of the Lambda-CDM model requires the use of maps of matter distribution in the early universe. These are obtained from computationally demanding first-principles N-body simulations.
-An alternative approach is to use Generative models to produce such 3D maps more quickly and efficiently after training them with data obtained from N-body simulations.
+To study strong forces such as the nuclear force, one performs Markov chain Monte-Carlo simulations on large lattices to obtain configurations that are then used to compute physical observables. These simulations produce large amounts of data. Reading from them directly and analyzing them in real-time is inconvenient. Databases offer a convenient way to store processed data that can be used for real-time analysis.
 
-Here, we develop conditional GANs (cGANs) to produce images of size 128^3, conditioned on the sigma parameter. Once trained, these GANs should enabled fast generation of images as compared to the N-body simulations.
+# Data
+The model being studied is an $ SU(4)$ gauge theory with one fermion flavor, which is of interest as a composite dark matter model. The simulations are done with Mobius-Domain-wall fermions on lattices of size $ 16 ^ 3 \times 8 \times 16$.
+The data is obtained by running Monte-Carlo simulations using the [Grid](https://github.com/paboyle/Grid) library. The resulting dataset is very large (~100GB). The output is then parsed to obtain data for analysis.
 
-The training images are obtained from N-body simulations run with Pycola.
-The dataset is too large to setup on this repository. So, we only provide the code to implement the cGANs.
 
-# Plots
+### Locating the phase transition
+The main goal is to locate the {\it confinement phase transition} of this theory.
+Below is a figure showing the values of one observable : the polyakov loop as a function of the parameter $\beta$. The discontinuity in the region around $ \beta \sim 10.8 $ indicates the location of this transition.
 
-We develop a simple GAN trained on 3D images of size upto 128^3.
+![Polyakovloop discontinuity](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/images/polyakov_loop.png)
 
-### Image comparison
-Below are 2D snapshots of a set of 3D images. The input images are to the left and the GAN generated images are to the right.
-3D GAN: Input images | 3D GAN: Generated images |
-:-------------:|:---------------:
-![2D slices of input images](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_reference_2dslices.png)| ![2D slices of generated images](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_generated_2dslices.png)
+### Variation in Monte-Carlo time
+To further understand the behavior, we plot the variation of observables in Monte-Carlo time.
 
-### Metric comparison
 To get a better idea of the quality of generated images, we compare the pixel intensity and power spectrum of the images with the reference images.
-3D cGAN: Pixel intensity | 3D cGAN: Power spectrum  |
+Time_series variation of polyakov loop | Scatter plot of Polyakov loop  |
 :-------------:|:---------------:
-![Pixel intensity](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_pixel_hist.png) |![Power spectrum](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/images/cgan_spec_rel.png)
-
-As see above, the match between generated and reference images drops for larger pixel values and large k.
+![Time_series variation of polyakov loop](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/images/time_series_polyakov.png) |![Scatter plot of Polyakov loop](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/images/scatter_polyakov.png)
 
 ### Repository information
 The Table below describes the important codes and their locations
 
 | Name | Description |
 | --- | ---|
-| [cGAN_3d_pytorch/code/main.py](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/cGAN_3d_pytorch/code/main.py) | main training code |
-|[cGAN_3d_pytorch/analysis/1_cgan3d_analyze_pytorch_without_precompute.ipynb](https://github.com/vmos1/Code_highlights/blob/main/3_cond_GANs_cosmology/cGAN_3d_pytorch/analysis/1_cgan3d_analyze_pytorch_without_precompute.ipynb) | Notebook to analyze GAN results and view best epoch-steps |
+| [1_HMC_write_to_database.ipynb](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/code/1_HMC_write_to_database.ipynb) | Code to write to sql database files |
+|[4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb) | Notebook to visualize general behavior and Monte-Carlo time variation |
 
 ## Summary: 
-Although the results show a fair match, the above CGAN is quite unstable and hence difficult to train. We believe the main reason for this is the memory constraint of the 3D images. This restricts the largest batch size possible to 8. To improve the image quality and stability of the GAN, we need to train with larger batch sizes, which requires the implementation of model parallelism. We are currently working in this direction, using the [LBANN](https://lbann.readthedocs.io/en/latest/) framework.
+The results show that we can identify the approximate location of the confinement transition and observe the behavior of observables in that region. In this region, we need to perform measurements to extract other physical quantities.
