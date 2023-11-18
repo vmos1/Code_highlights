@@ -21,6 +21,10 @@ For simiplicity, we use the data from the free theory, without any interactions.
 We develop conditional Generative Adversarial Neural networks (cGANs) to produce maps of the universe, conditioned on the cosmological paramters $\sigma$.
 The models are trained with images obtained from N-body simulations. Once trained, these ML models can very quickly generate novel images belonging to the distribution. Conditional GANs offer the opportunity to obtain novel images in regions of parameter space not explored by N-body simulations.
 
+## 4. Storing Lattice simulation data in sql databases
+To study strong forces such as the nuclear force, one performs Markov chain Monte-Carlo simulations on large lattices to obtain configurations that are then used to compute physical observables. These simulations produce large amounts of data. Reading from them directly and analyzing them in real-time is inconvenient. Databases offer a convenient way to store processed data that can be used for real-time analysis.
+
+Here, we develop jupyter notebooks to save parsed and processed data to sql databases using sqlite3 and pandas. We also have notebooks to visualize this data in Monte-Carlo time.
 
 ## Setting up the environment
 A number of files in this repository use interactive widgets in the jupyterlab environment. These codes also make use of custom packages such as [`lsqfit`](https://pypi.org/project/lsqfit/). The easiest way to run these codes is to setup a custom conda environment. The folder [conda_env](https://github.com/vmos1/Code_highlights/tree/main/conda_env) has files to set this up and [README](https://github.com/vmos1/Code_highlights/tree/main/conda_env/README.md) gives more details on setting this up.
