@@ -20,13 +20,15 @@ Time_series variation of polyakov loop | Scatter plot of Polyakov loop  |
 :-------------:|:---------------:
 ![Time_series variation of polyakov loop](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/images/time_series_polyakov.png) |![Scatter plot of Polyakov loop](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/images/scatter_polyakov.png)
 
+In the left figure, we see the variation of the Polyakov loop for two values of $\beta$ on either side of the transition. For the larger $\beta$ value, there is larger transient region before the observable attains steady-state values. To the right, we see a scatter plot of the complex Polyakov loop along the real-imaginary axis. As we cross the phase transition, the observable moves away from the origin (0,0) 
+
 ### Repository information
 The Table below describes the important codes and their locations
 
 | Name | Description |
 | --- | ---|
 | [1_HMC_write_to_database.ipynb](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/code/1_HMC_write_to_database.ipynb) | Code to write to sql database files |
-|[4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb) | Notebook to visualize general behavior and Monte-Carlo time variation |
+| [4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb) | Notebook to visualize general behavior and Monte-Carlo time variation |
 
 ## Summary: 
 The results show that we can identify the approximate location of the confinement transition and observe the behavior of observables in that region. In this region, we need to perform measurements to extract other physical quantities.
