@@ -29,4 +29,4 @@ The Table below describes the important codes and their locations
 | [4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb](https://github.com/vmos1/Code_highlights/blob/main/4_Monte_Carlo_analysis_sql_dbase/code/2_analysis.ipynb) | Notebook to visualize general behavior and Monte-Carlo time variation |
 
 ## Summary: 
-The results show that we can identify the approximate location of the confinement transition and observe the behavior of observables in that region. In this region, we need to perform measurements to extract other physical quantities.
+The results show that we can identify the approximate location of the confinement transition using the variation of physical observables. In this region, we need to perform measurements to extract other physical quantities.
