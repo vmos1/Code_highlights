@@ -23,5 +23,9 @@ To study strong forces such as the nuclear force, one performs Markov chain Mont
 
 Here, we develop jupyter notebooks to save parsed and processed data to sql databases using sqlite3 and pandas. We also have notebooks to visualize this data in Monte-Carlo time.
 
+## 5. Data visualization tools for finance 
+This folder contains a code in Dash app to interactively compute single interest, compound interest, SIP (Systematic investment plan) and loan EMI (Estimated monthly (term) installments).
+
+
 ## Setting up the environment
 A number of files in this repository use interactive widgets in the jupyterlab environment. These codes also make use of custom packages such as [`lsqfit`](https://pypi.org/project/lsqfit/). The easiest way to run these codes is to setup a custom conda environment. The folder [conda_env](https://github.com/vmos1/Code_highlights/tree/main/conda_env) has files to set this up and [README](https://github.com/vmos1/Code_highlights/tree/main/conda_env/README.md) gives more details on setting this up.
