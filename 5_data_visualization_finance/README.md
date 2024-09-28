@@ -1,6 +1,9 @@
 # Finance_visualization
 Developing some Dash app visualization for simple finance calculations such as Interest, SIP, EMI.
 
+# 
+
+[Tool snapshot]()
 
 ## Building the conda environment 
 Required packages : 
